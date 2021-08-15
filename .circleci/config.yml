@@ -13,7 +13,7 @@ jobs:
       - run:
           name: echo
           command: |
-            echo ("hello")
+            echo "hello"
   print_world:
     docker:
       - image: circleci/node:13.8.0
@@ -21,7 +21,7 @@ jobs:
       - run:
           name: echo
           command: |
-            echo ("world")
+            echo "world"
 workflows:
   # Name the workflow "welcome"
   welcome:
