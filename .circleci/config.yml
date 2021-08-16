@@ -26,9 +26,6 @@ jobs:
           command: |
             echo $MY_NAM      
 workflows:
-  test-env-vars:
-    jobs:
-      - print_world
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
