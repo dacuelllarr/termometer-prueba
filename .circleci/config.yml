@@ -7,7 +7,7 @@ orbs:
 # Orchestrate or schedule a set of jobs
 jobs:
   environment:
-    MY_NAM = CRL
+    MY_NAM: CRL
   print_hello:
     docker:
       - image: circleci/node:13.8.0
