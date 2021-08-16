@@ -22,7 +22,9 @@ jobs:
           name: echo
           command: |
             echo "world" 
-      - run: echo $MY_NAM      
+      - run:
+          command: |
+            echo $MY_NAM      
 workflows:
   # Name the workflow "welcome"
   welcome:
