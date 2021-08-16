@@ -23,7 +23,8 @@ jobs:
       - run:
           name: echo
           command: |
-            echo "world" $MY_NAM
+            echo "world" 
+      - run: echo $MY_NAM      
 workflows:
   # Name the workflow "welcome"
   welcome:
