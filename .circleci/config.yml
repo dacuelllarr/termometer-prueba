@@ -20,14 +20,14 @@ jobs:
             - output.txt      
   print_output_file:
     docker:
-        - image: circleci/node:13.8.0
-      steps:
-        - attach_workspace:
-            at: /tmp/workspace 
-        - run:
-            name: cat
-            command: |
-              cat output.txt  
+      - image: circleci/node:13.8.0
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace 
+      - run:
+          name: cat
+          command: |
+            cat output.txt  
 workflows:
   # Name the workflow "welcome"
   welcome:
