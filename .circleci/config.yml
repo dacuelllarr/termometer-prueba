@@ -13,7 +13,7 @@ commands:
         type: string
         default: "nada"
     steps:
-      run: echo << parameters.to >>
+      - run: echo << parameters.to >>
       
 jobs:
   save_hello_world_output:
