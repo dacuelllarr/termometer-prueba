@@ -3,49 +3,23 @@ version: 2.1
 # Use a package of configuration called an orb.
 orbs:
   # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
+  aws-cli: circleci/aws-cli@2.0.3
 # Orchestrate or schedule a set of jobs
-commands:
-  print_pipeline_id: 
-    description: This is a command to print workflow id
-    parameters:
-      to:
-        type: string
-        default: "nada"
-    steps:
-      - run: echo << parameters.to >>
-      
 jobs:
-  save_hello_world_output:
+  create_infrastructure:
     docker:
-      - image: circleci/node:13.8.0
+      - image: amazon/aws-cli
     steps:
-      - print_pipeline_id:
-          to: $CIRCLE_WORKFLOW_ID
+      - checkout
       - run:
-          name: echo
+          name: create infraestructure
           command: |
-            echo "hello world" > ~/output.txt
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - output.txt      
-  print_output_file:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - attach_workspace:
-          at: ~/ 
-      - run:
-          name: cat
-          command: |
-            cat ~/output.txt  
+            aws cloudformation deploy \
+              --template-file template.yml \
+              --stack-name my-stack
 workflows:
   # Name the workflow "welcome"
-  welcome:
+  my_workflow:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
-      - save_hello_world_output
-      - print_output_file:
-          requires: [save_hello_world_output]
+      - create_infrastructure
