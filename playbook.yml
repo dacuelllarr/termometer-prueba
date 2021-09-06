@@ -3,7 +3,7 @@
 - name: Exercise for setting up a web server in an EC 
   # hosts: ubuntu
   # Use the public IP if the VM is already created
-  hosts: ec2-50-18-30-125.us-west-1.compute.amazonaws.com
+  hosts: ec2-54-177-177-141.us-west-1.compute.amazonaws.com
   user: ubuntu
   become: true
   become_method: sudo
