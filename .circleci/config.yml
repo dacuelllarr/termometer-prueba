@@ -6,6 +6,21 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.3
 # Orchestrate or schedule a set of jobs
 jobs:
+  configure_infraestructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["4c:26:c5:2e:e9:e9:4b:ed:3e:05:7e:7a:e8:80:ce:7e"]  
+      - run:
+          name: install dependencies
+          command: |
+            apk add --update ansible
+      - run:
+          name: Configure Server
+          command: |
+            ansible-playbook -i inventory.txt playbook.yml  
   create_infrastructure:
     docker:
       - image: amazon/aws-cli
@@ -22,4 +37,4 @@ workflows:
   my_workflow:
     # Run the welcome/run job in its own container
     jobs:
-      - create_infrastructure
+      - configure_infrastructure
