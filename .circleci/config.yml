@@ -54,5 +54,5 @@ workflows:
     jobs:
       - configure_infraestructure
       - smoke_test
-          requires
+          requires:
             - configure_infraestructure
