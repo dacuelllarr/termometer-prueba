@@ -10,6 +10,7 @@ commands:
     steps:
       - run:
           name: Destroy environment
+          when: on_fail
           command: |
             aws cloudformation delete-stack --stack-name my-stack
 jobs:
@@ -29,7 +30,6 @@ jobs:
               return 1
               fi
       - destroy_environment
-          when: on_fail
   configure_infraestructure:
     docker:
       - image: python:3.7-alpine3.11
