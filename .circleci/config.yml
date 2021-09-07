@@ -12,7 +12,7 @@ commands:
           name: Destroy environment
           when: on_fail
           command: |
-            aws cloudformation delete-stack --stack-name my-stack
+            aws cloudformation delete-stack --stack-name my-stack --regions us-west-1
 jobs:
   smoke_test:
     docker:
